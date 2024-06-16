@@ -1,8 +1,12 @@
 from flask import Flask, request, render_template, send_file
 from pytube import YouTube
 import io
+import logging
 
 app = Flask(__name__)
+
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -14,6 +18,7 @@ def index():
             audio_streams = yt.streams.filter(only_audio=True).all()
             return render_template('index.html', streams=streams, audio_streams=audio_streams, yt=yt)
         except Exception as e:
+            logging.error(f"Error processing URL: {url}, Error: {e}")
             return str(e)
     return render_template('index.html')
 
@@ -31,8 +36,11 @@ def download_video():
 
         return send_file(buffer, as_attachment=True, download_name=f"{stream.title}.mp4", mimetype='video/mp4')
     except Exception as e:
+        logging.error(f"Error downloading video: {url} with itag {itag}, Error: {e}")
         return str(e)
 
-# This is required for Vercel to recognize the app
 def handler(event, context):
     return app(event, context)
+
+if __name__ == '__main__':
+    app.run(debug=True)
