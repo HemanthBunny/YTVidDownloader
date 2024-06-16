@@ -35,4 +35,4 @@ def download_video():
         return str(e)
 
 if __name__ == '__main__':
-    app.run(debug=True, host= '192.168.1.6')
+    app.run(debug=True, host='0.0.0.0')
