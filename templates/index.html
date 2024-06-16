@@ -8,8 +8,8 @@
   </head>
   <body>
     <div class="mainHeader">
-        <h1>YouTube Video <br/>Downloader</h1>
-        <img src="/static/imgs/icons8-youtube-240.png" alt="" srcset="">
+      <h1>YouTube Video <br />Downloader</h1>
+      <img src="/static/imgs/icons8-youtube-240.png" alt="" srcset="" />
     </div>
     <form action="/" method="post" id="url-form">
       <!-- <label for="url" id="label">Video URL:</label> -->
@@ -37,11 +37,9 @@
           <tr>
             <td>{{ stream.mime_type }}</td>
             <td>
-              {% if stream.filesize < 1024 * 1024 %}
-                {{ (stream.filesize / 1024)|round(2) }} KB
-              {% else %}
-                {{ (stream.filesize / (1024 * 1024))|round(2) }} MB
-              {% endif %}
+              {% if stream.filesize < 1024 * 1024 %} {{ (stream.filesize /
+              1024)|round(2) }} KB {% else %} {{ (stream.filesize / (1024 *
+              1024))|round(2) }} MB {% endif %}
             </td>
             <td>
               <form action="/download" method="post" style="display: inline">
@@ -67,11 +65,9 @@
             <td>{{ stream.resolution }}</td>
             <td>{{ stream.mime_type }}</td>
             <td>
-              {% if stream.filesize < 1024 * 1024 %}
-                {{ (stream.filesize / 1024)|round(2) }} KB
-              {% else %}
-                {{ (stream.filesize / (1024 * 1024))|round(2) }} MB
-              {% endif %}
+              {% if stream.filesize < 1024 * 1024 %} {{ (stream.filesize /
+              1024)|round(2) }} KB {% else %} {{ (stream.filesize / (1024 *
+              1024))|round(2) }} MB {% endif %}
             </td>
             <td>
               <form action="/download" method="post" style="display: inline">
@@ -88,12 +84,10 @@
       <div class="dets-container">
         <h2>{{ yt.title }}</h2>
         <img src="{{ yt.thumbnail_url }}" alt="Thumbnail" />
-        <p>
-          Duration: {{yt.length//60}} minutes {{yt.length%60}} seconds
-        </p>
+        <p>Duration: {{yt.length//60}} minutes {{yt.length%60}} seconds</p>
       </div>
     </div>
     {% endif %}
-    <script src="script.js"></script>
+    <script src="/static/scripts/script.js"></script>
   </body>
 </html>
